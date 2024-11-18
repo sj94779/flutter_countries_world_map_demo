@@ -14,6 +14,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        home: CountryPage(country: "us"));
+        home: const CountryPage(country: "us"));
   }
 }
+
+

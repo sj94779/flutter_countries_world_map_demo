@@ -2,6 +2,10 @@ import 'dart:convert';
 
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart' as test;
+import 'package:zoom_widget/zoom_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix_gesture_detector/matrix_gesture_detector.dart';
 
 class CountryPage extends StatefulWidget {
   final String country;
@@ -115,11 +119,15 @@ class _CountryPageState extends State<CountryPage> {
         ),
         body: instruction == "NOT SUPPORTED"
             ? const Center(child: Text("This country is not supported"))
-            : SizedBox(
-                height: 300,
-                width: 300,
+            : Transform.scale(
+          scale: 5.0,
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                color: Colors.red,
+                width: 140,
+                height: 100,
                 child: SimpleMap(
-                  //  fit: BoxFit.cover,
+                  fit: BoxFit.cover,
                   countryBorder:
                       const CountryBorder(color: Colors.black, width: 4),
                   markers: [
@@ -175,7 +183,8 @@ class _CountryPageState extends State<CountryPage> {
                     });
                   },
                 ),
-              ));
+              ),
+            ));
   }
 
   List<Map<String, dynamic>> getProperties(String input) {
@@ -606,5 +615,43 @@ class _CountryPageState extends State<CountryPage> {
       default:
         return 'NOT SUPPORTED';
     }
+  }
+}
+
+
+class ZoomableWidget extends StatefulWidget {
+  final Widget child;
+
+  const ZoomableWidget({ required this.child}) ;
+  @override
+  _ZoomableWidgetState createState() => _ZoomableWidgetState();
+}
+
+class _ZoomableWidgetState extends State<ZoomableWidget> {
+  double _scale = 1.5;
+  late double _previousScale;
+  @override
+  Widget build(BuildContext context) {
+    return ClipRect(
+      child: GestureDetector(
+        onScaleStart: (ScaleStartDetails details) {
+          _previousScale = _scale;
+        },
+        onScaleUpdate: (ScaleUpdateDetails details) {
+          setState(() {
+            _scale = _previousScale * details.scale;
+          });
+        },
+        onScaleEnd: (ScaleEndDetails details) {
+          _previousScale = 0.0;
+        },
+        child: Transform(
+          transform: Matrix4.diagonal3(test.Vector3(_scale.clamp(1.0, 5.0),
+              _scale.clamp(1.0, 5.0), _scale.clamp(1.0, 5.0))),
+          alignment: FractionalOffset.center,
+          child: widget.child,
+        ),
+      ),
+    );
   }
 }
