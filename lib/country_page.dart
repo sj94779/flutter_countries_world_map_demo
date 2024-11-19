@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart' as test;
-import 'package:zoom_widget/zoom_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix_gesture_detector/matrix_gesture_detector.dart';
+
 
 class CountryPage extends StatefulWidget {
   final String country;
@@ -37,60 +34,78 @@ class _CountryPageState extends State<CountryPage> {
       });
 
       var listOfColors = [
-        Colors.amber,
-        Colors.cyan,
-        Colors.amber[100],
-        Colors.red[100],
-        Colors.purple[100],
-        Colors.lightGreenAccent[100],
+        Colors.indigo,
         Colors.indigo[100],
-        Colors.lightBlue[100],
-        Colors.amber,
-        Colors.cyan,
-        Colors.amber[400],
-        Colors.red[400],
-        Colors.purple[400],
-        Colors.lightGreenAccent[400],
-        Colors.indigo[400],
-        Colors.lightBlue[400],
-        Colors.amber,
-        Colors.cyan,
-        Colors.amber[200],
-        Colors.red[200],
-        Colors.purple[200],
-        Colors.lightGreenAccent[200],
-        Colors.indigo[200],
-        Colors.lightBlue[200],
-        Colors.amber[600],
-        Colors.cyan[600],
-        Colors.amber[600],
-        Colors.red[600],
-        Colors.purple[600],
-        Colors.lightGreenAccent[600],
-        Colors.indigo[600],
-        Colors.lightBlue[600],
-        Colors.amber[200],
-        Colors.cyan[50],
-        Colors.amber[400],
-        Colors.red[400],
-        Colors.lightBlue[100],
-        Colors.amber[100],
-        Colors.cyan[100],
-        Colors.amber[400],
-        Colors.red[400],
-        Colors.lightBlue[50],
-        Colors.amber[100],
-        Colors.cyan[100],
-        Colors.amber[400],
-        Colors.red[400],
-        Colors.lightBlue[100],
-        Colors.amber,
-        Colors.cyan,
-        Colors.amber[900],
-        Colors.red[50],
-        Colors.lightGreenAccent[900],
         Colors.indigo[900],
-        Colors.lightBlue[900],
+        Colors.indigo[200],
+
+        Colors.indigo[400],
+        Colors.indigo[500],
+        Colors.indigo[600],
+        Colors.indigo[300],
+        Colors.indigo[700],
+        Colors.indigo[300],
+        Colors.indigo[900],
+        Colors.blue,
+        Colors.blue[700],
+        Colors.blue[100],
+        Colors.blue[200],
+        Colors.indigo[500],
+        Colors.blue[300],
+        Colors.blue[400],
+        Colors.blue[500],
+        Colors.blue[600],
+        Colors.indigo[100],
+        Colors.blue[900],
+        Colors.blue[500],
+        Colors.indigo,
+
+        Colors.indigo[200],
+
+        Colors.indigo[400],
+
+        Colors.indigo[600],
+
+
+        Colors.blue,
+        Colors.blue[700],
+        Colors.blue[100],
+        Colors.blue[200],
+        Colors.indigo[700],
+        Colors.blue[300],
+        Colors.blue[400],
+
+        Colors.blue[600],
+        Colors.blue[900],
+
+        Colors.indigo[100],
+        Colors.blue[900],
+        Colors.blue[500],
+        Colors.indigo,
+
+        Colors.indigo[200],
+
+        Colors.indigo[400],
+
+        Colors.indigo[600],
+
+        Colors.indigo[100],
+        Colors.indigo[900],
+        Colors.indigo[200],
+
+        Colors.indigo[400],
+        Colors.indigo[500],
+        Colors.blue[100],
+        Colors.indigo[600],
+        Colors.indigo[300],
+        Colors.indigo[700],
+        Colors.indigo[300],
+        Colors.indigo[900],
+        Colors.blue,
+        Colors.blue[700],
+
+        Colors.blue[200],
+
       ];
       for (int i = 0; i < properties.length; i++) {
         keyValuesPaires.update(keyValuesPaires.keys.toList()[i],
@@ -118,394 +133,72 @@ class _CountryPageState extends State<CountryPage> {
         ),
         body: instruction == "NOT SUPPORTED"
             ? const Center(child: Text("This country is not supported"))
-            : Container(
-                padding: const EdgeInsets.all(8.0),
-                //   color: Colors.red,
-                width: 300,
-                height: 300,
-                child: SimpleMap(
-                  fit: BoxFit.cover,
-                  countryBorder:
-                      const CountryBorder(color: Colors.black, width: 4),
-                  markers: [
-                    // for texas
+            : Transform.scale(
+          scale: 7,
+              child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  //  color: Colors.red,
+                  // width: 300,
+                  // height: 300,
+                width: 130,
+                height: 100,
+                  child: SimpleMap(
+                    fit: BoxFit.cover,
+                    countryBorder:
+                        const CountryBorder(color: Colors.white, width: 4),
+                    markers: [
+                      // for kansas
+                      getMarker(40.4258686, -86.9080655, "Kansas" , 342),
 
-                    //for delhi
+                      //for abuja
+                      getMarker(9.0563, 7.4985, "Abuja" , 220),
 
-                    SimpleMapMarker(
-                      markerSize: const Size(16, 16),
-                      latLong:
-                      const LatLong(latitude: 28.7041, longitude: 77.1025),
-                      marker:
+                      //for delhi
+                      getMarker(28.7041, 77.1025, "Delhi" , 348),
 
+                      //for mumbai
+                      getMarker(19.0760, 72.8777, "Mumbai" , 342),
 
-                      Tooltip(
+                      //for bangalore
+                      getMarker(12.971599, 77.5946, "Bangalore" , 358),
 
-                        richMessage: WidgetSpan(
-                          alignment: PlaceholderAlignment.baseline,
-                          baseline: TextBaseline.alphabetic,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  state,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              const SizedBox(width: 10,),
+                      //for bhopal
+                      getMarker(23.2599, 77.4126, "Bhopal" , 523),
 
-                              Container(
-                                  width: 30,
-                                  height: 30,
+                      //for bhubaneswar
+                      getMarker(20.2960, 85.8246, "Bhubaneswar" , 220),
+                    ],
+                    onHover: (String id, String name, bool isHovering) {},
+                    defaultColor: Colors.grey.shade300,
+                    key: Key(properties.toString()),
+                    colors: keyValuesPaires,
+                    instructions: instruction,
+                    callback: (
+                      id,
+                      name,
+                      tapDetails,
+                    ) {
+                      print("id $id");
+                      print("name $name");
+                      print("tapDetails $tapDetails");
+                      print("tapDetails ${tapDetails.globalPosition}");
+                      setState(() {
+                        state = name;
 
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: const Center(
-                                      child: Text("4",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12))))
-                            ],
-                          ),
-                        ),
-                        //   textStyle: const TextStyle(color: Colors.white),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Container(
-                          width: 20,
-                          height:
-                          20, // or ClipRRect if you need to clip the content
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(
-                                  50) // inner circle color
-                          ),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          // inner content
-                        ),
-                      ),
-                    ),
-                    //for mumbai
+                        int i = properties
+                            .indexWhere((element) => element['id'] == id);
 
-                    SimpleMapMarker(
-                      markerSize: const Size(16, 16),
-
-                      latLong:    const LatLong(latitude: 19.0760, longitude: 72.8777),
-                      marker:
-
-
-                      Tooltip(
-
-                        richMessage: WidgetSpan(
-                          alignment: PlaceholderAlignment.baseline,
-                          baseline: TextBaseline.alphabetic,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  state,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              const SizedBox(width: 10,),
-
-                              Container(
-                                  width: 30,
-                                  height: 30,
-
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: const Center(
-                                      child: Text("4",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12))))
-                            ],
-                          ),
-                        ),
-                        //   textStyle: const TextStyle(color: Colors.white),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Container(
-                          width: 20,
-                          height:
-                          20, // or ClipRRect if you need to clip the content
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(
-                                  50) // inner circle color
-                          ),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          // inner content
-                        ),
-                      ),
-                    ),
-                    //for bangalore
-
-                    SimpleMapMarker(
-                      markerSize: const Size(16, 16),
-
-                      latLong: const LatLong(
-                        latitude: 12.971599, longitude: 77.5946),
-                      marker:
-
-
-                      Tooltip(
-
-                        richMessage: WidgetSpan(
-                          alignment: PlaceholderAlignment.baseline,
-                          baseline: TextBaseline.alphabetic,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  state,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              const SizedBox(width: 10,),
-
-                              Container(
-                                  width: 30,
-                                  height: 30,
-
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: const Center(
-                                      child: Text("4",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12))))
-                            ],
-                          ),
-                        ),
-                        //   textStyle: const TextStyle(color: Colors.white),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Container(
-                          width: 20,
-                          height:
-                          20, // or ClipRRect if you need to clip the content
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(
-                                  50) // inner circle color
-                          ),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          // inner content
-                        ),
-                      ),
-                    ),
-                    //for bhopal
-
-                    SimpleMapMarker(
-                      markerSize: const Size(16, 16),
-                      latLong:
-                      const LatLong(latitude: 23.2599, longitude: 77.4126),
-                      marker:
-
-
-                      Tooltip(
-
-                        richMessage: WidgetSpan(
-                          alignment: PlaceholderAlignment.baseline,
-                          baseline: TextBaseline.alphabetic,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  state,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              const SizedBox(width: 10,),
-
-                              Container(
-                                  width: 30,
-                                  height: 30,
-
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: const Center(
-                                      child: Text("4",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12))))
-                            ],
-                          ),
-                        ),
-                        //   textStyle: const TextStyle(color: Colors.white),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Container(
-                          width: 20,
-                          height:
-                          20, // or ClipRRect if you need to clip the content
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(
-                                  50) // inner circle color
-                          ),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          // inner content
-                        ),
-                      ),
-                    ),
-                    //for bhubaneswar
-                    SimpleMapMarker(
-                      markerSize: const Size(16, 16),
-                      latLong:
-                          const LatLong(latitude: 20.2960, longitude: 85.8246),
-                      marker:
-
-
-                          Tooltip(
-
-                        richMessage: WidgetSpan(
-                          alignment: PlaceholderAlignment.baseline,
-                          baseline: TextBaseline.alphabetic,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  state,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              const SizedBox(width: 10,),
-
-                              Container(
-                                  width: 30,
-                                 height: 30,
-
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: const Center(
-                                      child: Text("4",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12))))
-                            ],
-                          ),
-                        ),
-                        //   textStyle: const TextStyle(color: Colors.white),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Container(
-                          width: 20,
-                          height:
-                              20, // or ClipRRect if you need to clip the content
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(
-                                  50) // inner circle color
-                              ),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          // inner content
-                        ),
-                      ),
-                    ),
-                  ],
-                  onHover: (String id, String name, bool isHovering) {},
-                  defaultColor: Colors.grey.shade300,
-                  key: Key(properties.toString()),
-                  colors: keyValuesPaires,
-                  instructions: instruction,
-                  callback: (
-                    id,
-                    name,
-                    tapDetails,
-                  ) {
-                    print("id $id");
-                    print("name $name");
-                    print("tapDetails $tapDetails");
-                    print("tapDetails ${tapDetails.globalPosition}");
-                    setState(() {
-                      state = name;
-
-                      int i = properties
-                          .indexWhere((element) => element['id'] == id);
-
-                      // properties[i]['color'] =
-                      //     properties[i]['color'] == Colors.green
-                      //         ? null
-                      //         : Colors.green;
-                      // keyValuesPaires[properties[i]['id']] =
-                      //     properties[i]['color'];
-                    });
-                  },
+                        // properties[i]['color'] =
+                        //     properties[i]['color'] == Colors.green
+                        //         ? null
+                        //         : Colors.green;
+                        // keyValuesPaires[properties[i]['id']] =
+                        //     properties[i]['color'];
+                      });
+                    },
+                  ),
                 ),
-              ));
+            ));
   }
 
   List<Map<String, dynamic>> getProperties(String input) {
@@ -936,5 +629,70 @@ class _CountryPageState extends State<CountryPage> {
       default:
         return 'NOT SUPPORTED';
     }
+  }
+
+  SimpleMapMarker getMarker(double lat, double long, String text, int value) {
+    return SimpleMapMarker(
+      markerSize: const Size(16, 16),
+      latLong: LatLong(latitude: lat, longitude: long),
+      marker: Tooltip(
+        triggerMode: TooltipTriggerMode.tap,
+        richMessage: WidgetSpan(
+          alignment: PlaceholderAlignment.baseline,
+          baseline: TextBaseline.alphabetic,
+          child:
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  text,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child:  Center(
+                      child: Text(value.toString(),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12))))
+            ],
+          ),
+        ),
+        //   textStyle: const TextStyle(color: Colors.white),
+        padding: const EdgeInsets.only(left: 8),
+        decoration: BoxDecoration(
+            color: Colors.black,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(50)),
+        child: Container(
+          width: 20,
+          height: 20, // or ClipRRect if you need to clip the content
+          decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(50) // inner circle color
+              ),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+            ),
+          ),
+          // inner content
+        ),
+      ),
+    );
   }
 }
