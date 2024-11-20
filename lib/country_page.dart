@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
 
-
 class CountryPage extends StatefulWidget {
   final String country;
 
@@ -15,6 +14,12 @@ class CountryPage extends StatefulWidget {
 class _CountryPageState extends State<CountryPage> {
   late String state;
   late String instruction;
+
+  final tooltipkey = GlobalKey<State<Tooltip>>();
+
+  List<GlobalKey> tooltipkeys = List<GlobalKey>.generate(
+      12, (index) => GlobalKey(debugLabel: 'key_$index'),
+      growable: false);
 
   late List<Map<String, dynamic>> properties;
 
@@ -38,7 +43,6 @@ class _CountryPageState extends State<CountryPage> {
         Colors.indigo[100],
         Colors.indigo[900],
         Colors.indigo[200],
-
         Colors.indigo[400],
         Colors.indigo[500],
         Colors.indigo[600],
@@ -59,14 +63,9 @@ class _CountryPageState extends State<CountryPage> {
         Colors.blue[900],
         Colors.blue[500],
         Colors.indigo,
-
         Colors.indigo[200],
-
         Colors.indigo[400],
-
         Colors.indigo[600],
-
-
         Colors.blue,
         Colors.blue[700],
         Colors.blue[100],
@@ -74,25 +73,18 @@ class _CountryPageState extends State<CountryPage> {
         Colors.indigo[700],
         Colors.blue[300],
         Colors.blue[400],
-
         Colors.blue[600],
         Colors.blue[900],
-
         Colors.indigo[100],
         Colors.blue[900],
         Colors.blue[500],
         Colors.indigo,
-
         Colors.indigo[200],
-
         Colors.indigo[400],
-
         Colors.indigo[600],
-
         Colors.indigo[100],
         Colors.indigo[900],
         Colors.indigo[200],
-
         Colors.indigo[400],
         Colors.indigo[500],
         Colors.blue[100],
@@ -103,9 +95,7 @@ class _CountryPageState extends State<CountryPage> {
         Colors.indigo[900],
         Colors.blue,
         Colors.blue[700],
-
         Colors.blue[200],
-
       ];
       for (int i = 0; i < properties.length; i++) {
         keyValuesPaires.update(keyValuesPaires.keys.toList()[i],
@@ -116,7 +106,25 @@ class _CountryPageState extends State<CountryPage> {
     } else {
       state = 'This country is not supported';
     }
+
+    showAndCloseTooltip();
     super.initState();
+  }
+
+  Future showAndCloseTooltip() async {
+    await Future.delayed(const Duration(milliseconds: 10));
+
+    var tooltip = [];
+
+    for (int i = 0; i < tooltipkeys.length; i++) {
+      tooltip.add(tooltipkeys[i].currentState);
+
+      tooltip[i]?.ensureTooltipVisible();
+    }
+
+    await Future.delayed(const Duration(seconds: 4));
+    // tooltipkey.currentState.deactivate();
+    // tooltip?.deactivate();
   }
 
   @override
@@ -134,39 +142,55 @@ class _CountryPageState extends State<CountryPage> {
         body: instruction == "NOT SUPPORTED"
             ? const Center(child: Text("This country is not supported"))
             : Transform.scale(
-          scale: 7,
-              child: Container(
+                scale: 1,
+                child: Container(
                   padding: const EdgeInsets.all(16.0),
-                  //  color: Colors.red,
-                  // width: 300,
-                  // height: 300,
-                width: 130,
-                height: 100,
+                  // //  color: Colors.red,
+                  width: 300,
+                  height: 300,
+                  // width: 130,
+                  // height: 100,
                   child: SimpleMap(
                     fit: BoxFit.cover,
                     countryBorder:
                         const CountryBorder(color: Colors.white, width: 4),
                     markers: [
-                      // for kansas
-                      getMarker(40.4258686, -86.9080655, "Kansas" , 342),
+                      // // for Styria  //at  // not working   //ne
+                      // getMarker(47.2649, 14.8939, "Styria", 322, ),
+                      //
+                      // // for Madrid  //es  // not working   //nw
+                      // getMarker(40.4637, 3.7492, "Madrid", 322),
+                      //
+                      // // for Buenos Aries  //ar  //not working  //sw
+                      // getMarker(34.6037, 58.3816, "Buenos Aries", 322),
+                      //
+                      // // for kansas  //us  //not working  //nw
+                      // getMarker(40.4258686, -86.9080655, "Kansas", 342),
+                      //
+                      // // for Canberra  //au  //working  //se
+                      // getMarker(-35.473469, 149.012375, "Canberra", 322),
+                      //
+                      // //for abuja  //ng  //working  //ne
+                      // getMarker(9.0563, 7.4985, "Abuja", 220),
 
-                      //for abuja
-                      getMarker(9.0563, 7.4985, "Abuja" , 220),
-
-                      //for delhi
-                      getMarker(28.7041, 77.1025, "Delhi" , 348),
+                      //for delhi  //in  //working  //se
+                      getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
 
                       //for mumbai
-                      getMarker(19.0760, 72.8777, "Mumbai" , 342),
+                      getMarker(
+                          19.0760, 72.8777, "Mumbai", 342, tooltipkeys[1]),
 
                       //for bangalore
-                      getMarker(12.971599, 77.5946, "Bangalore" , 358),
+                      getMarker(
+                          12.971599, 77.5946, "Bangalore", 358, tooltipkeys[2]),
 
                       //for bhopal
-                      getMarker(23.2599, 77.4126, "Bhopal" , 523),
+                      getMarker(
+                          23.2599, 77.4126, "Bhopal", 523, tooltipkeys[3]),
 
                       //for bhubaneswar
-                      getMarker(20.2960, 85.8246, "Bhubaneswar" , 220),
+                      getMarker(
+                          20.2960, 85.8246, "Bhubaneswar", 220, tooltipkeys[4]),
                     ],
                     onHover: (String id, String name, bool isHovering) {},
                     defaultColor: Colors.grey.shade300,
@@ -178,27 +202,18 @@ class _CountryPageState extends State<CountryPage> {
                       name,
                       tapDetails,
                     ) {
+                      showAndCloseTooltip();
                       print("id $id");
                       print("name $name");
                       print("tapDetails $tapDetails");
                       print("tapDetails ${tapDetails.globalPosition}");
                       setState(() {
                         state = name;
-
-                        int i = properties
-                            .indexWhere((element) => element['id'] == id);
-
-                        // properties[i]['color'] =
-                        //     properties[i]['color'] == Colors.green
-                        //         ? null
-                        //         : Colors.green;
-                        // keyValuesPaires[properties[i]['id']] =
-                        //     properties[i]['color'];
                       });
                     },
                   ),
                 ),
-            ));
+              ));
   }
 
   List<Map<String, dynamic>> getProperties(String input) {
@@ -631,17 +646,19 @@ class _CountryPageState extends State<CountryPage> {
     }
   }
 
-  SimpleMapMarker getMarker(double lat, double long, String text, int value) {
+  SimpleMapMarker getMarker(double lat, double long, String text, int value,
+      GlobalKey<State<StatefulWidget>> tooltipkey) {
     return SimpleMapMarker(
       markerSize: const Size(16, 16),
       latLong: LatLong(latitude: lat, longitude: long),
       marker: Tooltip(
-        triggerMode: TooltipTriggerMode.tap,
+        triggerMode: TooltipTriggerMode.manual,
+        key: tooltipkey,
+        //  triggerMode: TooltipTriggerMode.tap,
         richMessage: WidgetSpan(
           alignment: PlaceholderAlignment.baseline,
           baseline: TextBaseline.alphabetic,
-          child:
-          Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -661,9 +678,9 @@ class _CountryPageState extends State<CountryPage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child:  Center(
+                  child: Center(
                       child: Text(value.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.normal,
                               fontSize: 12))))
