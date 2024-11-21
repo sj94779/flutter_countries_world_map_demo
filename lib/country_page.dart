@@ -142,30 +142,23 @@ class _CountryPageState extends State<CountryPage> {
         body: instruction == "NOT SUPPORTED"
             ? const Center(child: Text("This country is not supported"))
             : Transform.scale(
-                scale: 1,
+                scale: 7,
                 child: Container(
                   padding: const EdgeInsets.all(16.0),
                   // //  color: Colors.red,
-                  width: 300,
-                  height: 300,
-                  // width: 130,
-                  // height: 100,
+                  // width: 300,
+                  // height: 300,
+                  width: 130,
+                  height: 100,
                   child: SimpleMap(
                     fit: BoxFit.cover,
                     countryBorder:
                         const CountryBorder(color: Colors.white, width: 4),
                     markers: [
-                      // // for Styria  //at  // not working   //ne
-                      // getMarker(47.2649, 14.8939, "Styria", 322, ),
-                      //
-                      // // for Madrid  //es  // not working   //nw
-                      // getMarker(40.4637, 3.7492, "Madrid", 322),
-                      //
-                      // // for Buenos Aries  //ar  //not working  //sw
-                      // getMarker(34.6037, 58.3816, "Buenos Aries", 322),
+
                       //
                       // // for kansas  //us  //not working  //nw
-                      // getMarker(40.4258686, -86.9080655, "Kansas", 342),
+                      getMarker(39.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
                       //
                       // // for Canberra  //au  //working  //se
                       // getMarker(-35.473469, 149.012375, "Canberra", 322),
