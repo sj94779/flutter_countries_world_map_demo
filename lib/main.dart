@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countries_world_map_demo/world_map_page.dart';
 import 'country_page.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
         home: const CountryPage(country: "us"));
+  //  home:  WorldMapPage());
   }
 }
 

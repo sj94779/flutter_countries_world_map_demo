@@ -156,7 +156,8 @@ class _CountryPageState extends State<CountryPage> {
                         const CountryBorder(color: Colors.white, width: 4),
                     markers: [
 
-                      //
+                      //hit & trial
+                      getMarker(-19.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
                       // // for kansas  //us  //not working  //nw
                       getMarker(39.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
                       //
@@ -641,7 +642,8 @@ class _CountryPageState extends State<CountryPage> {
 
   SimpleMapMarker getMarker(double lat, double long, String text, int value,
       GlobalKey<State<StatefulWidget>> tooltipkey) {
-    return SimpleMapMarker(
+    return
+      SimpleMapMarker(
       markerSize: const Size(16, 16),
       latLong: LatLong(latitude: lat, longitude: long),
       marker: Tooltip(
