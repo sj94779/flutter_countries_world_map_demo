@@ -102,24 +102,24 @@ class _WorldMapPageState extends State<WorldMapPage> {
                         // //for abuja  //ng  //working  //ne
                         // getMarker(9.0563, 7.4985, "Abuja", 220),
 
-                        //for delhi  //in  //working  //se
-                        getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
-
-                        //for mumbai
-                        getMarker(
-                            19.0760, 72.8777, "Mumbai", 342, tooltipkeys[1]),
-
-                        //for bangalore
-                        getMarker(
-                            12.971599, 77.5946, "Bangalore", 358, tooltipkeys[2]),
-
-                        //for bhopal
-                        getMarker(
-                            23.2599, 77.4126, "Bhopal", 523, tooltipkeys[3]),
-
-                        //for bhubaneswar
-                        getMarker(
-                            20.2960, 85.8246, "Bhubaneswar", 220, tooltipkeys[4]),
+                        // //for delhi  //in  //working  //se
+                        // getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
+                        //
+                        // //for mumbai
+                        // getMarker(
+                        //     19.0760, 72.8777, "Mumbai", 342, tooltipkeys[1]),
+                        //
+                        // //for bangalore
+                        // getMarker(
+                        //     12.971599, 77.5946, "Bangalore", 358, tooltipkeys[2]),
+                        //
+                        // //for bhopal
+                        // getMarker(
+                        //     23.2599, 77.4126, "Bhopal", 523, tooltipkeys[3]),
+                        //
+                        // //for bhubaneswar
+                        // getMarker(
+                        //     20.2960, 85.8246, "Bhubaneswar", 220, tooltipkeys[4]),
                       ],
                       colors: SMapWorldColors(
                         aD: Colors.indigo[300],

@@ -121,7 +121,6 @@ class _CountryPageState extends State<CountryPage> {
 
       tooltip[i]?.ensureTooltipVisible();
     }
-
     await Future.delayed(const Duration(seconds: 4));
     // tooltipkey.currentState.deactivate();
     // tooltip?.deactivate();
@@ -147,7 +146,7 @@ class _CountryPageState extends State<CountryPage> {
                   padding: const EdgeInsets.all(16.0),
                   // //  color: Colors.red,
                   // width: 300,
-                  // height: 300,
+                  //  height: 300,
                   width: 130,
                   height: 100,
                   child: SimpleMap(
@@ -157,9 +156,13 @@ class _CountryPageState extends State<CountryPage> {
                     markers: [
 
                       //hit & trial
-                      getMarker(-19.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
+                 //     getMarker(-19.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
                       // // for kansas  //us  //not working  //nw
-                      getMarker(39.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
+                      getMarker(38.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
+
+
+                      // for Wyoming
+                      getMarker(42.8797, -107.3626, "Wyoming", 245, tooltipkeys[6]),
                       //
                       // // for Canberra  //au  //working  //se
                       // getMarker(-35.473469, 149.012375, "Canberra", 322),
@@ -167,24 +170,24 @@ class _CountryPageState extends State<CountryPage> {
                       // //for abuja  //ng  //working  //ne
                       // getMarker(9.0563, 7.4985, "Abuja", 220),
 
-                      //for delhi  //in  //working  //se
-                      getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
-
-                      //for mumbai
-                      getMarker(
-                          19.0760, 72.8777, "Mumbai", 342, tooltipkeys[1]),
-
-                      //for bangalore
-                      getMarker(
-                          12.971599, 77.5946, "Bangalore", 358, tooltipkeys[2]),
-
-                      //for bhopal
-                      getMarker(
-                          23.2599, 77.4126, "Bhopal", 523, tooltipkeys[3]),
-
-                      //for bhubaneswar
-                      getMarker(
-                          20.2960, 85.8246, "Bhubaneswar", 220, tooltipkeys[4]),
+                      // //for delhi  //in  //working  //se
+                      // getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
+                      //
+                      // //for mumbai
+                      // getMarker(
+                      //     19.0760, 72.8777, "Mumbai", 342, tooltipkeys[1]),
+                      //
+                      // //for bangalore
+                      // getMarker(
+                      //     12.971599, 77.5946, "Bangalore", 358, tooltipkeys[2]),
+                      //
+                      // //for bhopal
+                      // getMarker(
+                      //     23.2599, 77.4126, "Bhopal", 523, tooltipkeys[3]),
+                      //
+                      // //for bhubaneswar
+                      // getMarker(
+                      //     20.2960, 85.8246, "Bhubaneswar", 220, tooltipkeys[4]),
                     ],
                     onHover: (String id, String name, bool isHovering) {},
                     defaultColor: Colors.grey.shade300,
