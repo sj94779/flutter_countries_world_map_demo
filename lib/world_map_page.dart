@@ -7,8 +7,7 @@ class WorldMapPage extends StatefulWidget {
   WorldMapPage({Key? key}) : super(key: key);
 
   @override
-  _WorldMapPageState createState() =>
-      _WorldMapPageState();
+  _WorldMapPageState createState() => _WorldMapPageState();
 }
 
 class _WorldMapPageState extends State<WorldMapPage> {
@@ -32,7 +31,6 @@ class _WorldMapPageState extends State<WorldMapPage> {
   List<GlobalKey> tooltipkeys = List<GlobalKey>.generate(
       12, (index) => GlobalKey(debugLabel: 'key_$index'),
       growable: false);
-
 
   @override
   void initState() {
@@ -91,35 +89,9 @@ class _WorldMapPageState extends State<WorldMapPage> {
                         });
                       },
                       markers: [
-
-                        //
-                        // // for kansas  //us  //not working  //nw
-                        getMarker(39.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
-                        //
-                        // // for Canberra  //au  //working  //se
-                        // getMarker(-35.473469, 149.012375, "Canberra", 322),
-                        //
-                        // //for abuja  //ng  //working  //ne
-                        // getMarker(9.0563, 7.4985, "Abuja", 220),
-
-                        // //for delhi  //in  //working  //se
-                        // getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
-                        //
-                        // //for mumbai
-                        // getMarker(
-                        //     19.0760, 72.8777, "Mumbai", 342, tooltipkeys[1]),
-                        //
-                        // //for bangalore
-                        // getMarker(
-                        //     12.971599, 77.5946, "Bangalore", 358, tooltipkeys[2]),
-                        //
-                        // //for bhopal
-                        // getMarker(
-                        //     23.2599, 77.4126, "Bhopal", 523, tooltipkeys[3]),
-                        //
-                        // //for bhubaneswar
-                        // getMarker(
-                        //     20.2960, 85.8246, "Bhubaneswar", 220, tooltipkeys[4]),
+                        // for Kansas
+                        getMarker(39.019350, -96.310872, "Kansas", 342,
+                            tooltipkeys[5]),
                       ],
                       colors: SMapWorldColors(
                         aD: Colors.indigo[300],
@@ -381,12 +353,13 @@ class _WorldMapPageState extends State<WorldMapPage> {
                 ],
               ),
             ),
-            Positioned(
+            const Positioned(
                 bottom: 36,
                 left: 0,
                 right: 0,
                 child: Text('Tap / click the dice to change the colors',
-                    style: TextStyle(fontSize: 18), textAlign: TextAlign.center)),
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.center)),
             Positioned(
               bottom: 36,
               right: 36,
@@ -395,7 +368,7 @@ class _WorldMapPageState extends State<WorldMapPage> {
                   onPressed: () {
                     setState(() {});
                   },
-                  child: Icon(Icons.casino)),
+                  child: const Icon(Icons.casino)),
             ),
           ],
         ),
@@ -405,69 +378,68 @@ class _WorldMapPageState extends State<WorldMapPage> {
 
   SimpleMapMarker getMarker(double lat, double long, String text, int value,
       GlobalKey<State<StatefulWidget>> tooltipkey) {
-    return
-      SimpleMapMarker(
-        markerSize: const Size(16, 16),
-        latLong: LatLong(latitude: lat, longitude: long),
-        marker: Tooltip(
-          triggerMode: TooltipTriggerMode.manual,
-          key: tooltipkey,
-          //  triggerMode: TooltipTriggerMode.tap,
-          richMessage: WidgetSpan(
-            alignment: PlaceholderAlignment.baseline,
-            baseline: TextBaseline.alphabetic,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    text,
-                    style: const TextStyle(color: Colors.white),
-                  ),
+    return SimpleMapMarker(
+      markerSize: const Size(16, 16),
+      latLong: LatLong(latitude: lat, longitude: long),
+      marker: Tooltip(
+        triggerMode: TooltipTriggerMode.manual,
+        key: tooltipkey,
+        //  triggerMode: TooltipTriggerMode.tap,
+        richMessage: WidgetSpan(
+          alignment: PlaceholderAlignment.baseline,
+          baseline: TextBaseline.alphabetic,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  text,
+                  style: const TextStyle(color: Colors.white),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Center(
-                        child: Text(value.toString(),
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12))))
-              ],
-            ),
-          ),
-          //   textStyle: const TextStyle(color: Colors.white),
-          padding: const EdgeInsets.only(left: 8),
-          decoration: BoxDecoration(
-              color: Colors.black,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(50)),
-          child: Container(
-            width: 20,
-            height: 20, // or ClipRRect if you need to clip the content
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(50) // inner circle color
-            ),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
               ),
-            ),
-            // inner content
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                      child: Text(value.toString(),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12))))
+            ],
           ),
         ),
-      );
+        //   textStyle: const TextStyle(color: Colors.white),
+        padding: const EdgeInsets.only(left: 8),
+        decoration: BoxDecoration(
+            color: Colors.black,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(50)),
+        child: Container(
+          width: 20,
+          height: 20, // or ClipRRect if you need to clip the content
+          decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(50) // inner circle color
+              ),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+            ),
+          ),
+          // inner content
+        ),
+      ),
+    );
   }
 }

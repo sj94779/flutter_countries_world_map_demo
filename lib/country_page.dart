@@ -154,21 +154,13 @@ class _CountryPageState extends State<CountryPage> {
                     countryBorder:
                         const CountryBorder(color: Colors.white, width: 4),
                     markers: [
-
-                      //hit & trial
-                 //     getMarker(-19.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
-                      // // for kansas  //us  //not working  //nw
-                      getMarker(38.0119, -98.4842, "Kansas", 342, tooltipkeys[5]),
-
+                      // for Kansas
+                      getMarker(
+                          39.019350, -96.310872, "Kansas", 342, tooltipkeys[5]),
 
                       // for Wyoming
-                      getMarker(42.8797, -107.3626, "Wyoming", 245, tooltipkeys[6]),
-                      //
-                      // // for Canberra  //au  //working  //se
-                      // getMarker(-35.473469, 149.012375, "Canberra", 322),
-                      //
-                      // //for abuja  //ng  //working  //ne
-                      // getMarker(9.0563, 7.4985, "Abuja", 220),
+                      getMarker(42.177115, -107.314590, "Wyoming", 245,
+                          tooltipkeys[6]),
 
                       // //for delhi  //in  //working  //se
                       // getMarker(28.7041, 77.1025, "Delhi", 348, tooltipkeys[0]),
@@ -645,8 +637,7 @@ class _CountryPageState extends State<CountryPage> {
 
   SimpleMapMarker getMarker(double lat, double long, String text, int value,
       GlobalKey<State<StatefulWidget>> tooltipkey) {
-    return
-      SimpleMapMarker(
+    return SimpleMapMarker(
       markerSize: const Size(16, 16),
       latLong: LatLong(latitude: lat, longitude: long),
       marker: Tooltip(
@@ -663,7 +654,7 @@ class _CountryPageState extends State<CountryPage> {
               Flexible(
                 child: Text(
                   text,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white70),
                 ),
               ),
               const SizedBox(
@@ -685,27 +676,18 @@ class _CountryPageState extends State<CountryPage> {
             ],
           ),
         ),
-        //   textStyle: const TextStyle(color: Colors.white),
+        preferBelow: false,
+        verticalOffset: 10,
         padding: const EdgeInsets.only(left: 8),
         decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.black87,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(50)),
         child: Container(
-          width: 20,
-          height: 20, // or ClipRRect if you need to clip the content
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(50) // inner circle color
-              ),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.red,
-              shape: BoxShape.circle,
-            ),
+          decoration: const BoxDecoration(
+            color: Colors.amber,
+            shape: BoxShape.circle,
           ),
-          // inner content
         ),
       ),
     );
